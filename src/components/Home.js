@@ -1,66 +1,69 @@
-import { useEffect, useState } from "react";
-import { Box, Card, CardContent, Typography, Button, Chip, Grid } from "@mui/material";
+import { useEffect, useState, useCallback } from "react";
+import { Box, Card, CardContent, Typography, Chip, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { matchApi } from "../services/api";
 
 export default function Home() {
     const [matches, setMatches] = useState([]);
     const navigate = useNavigate();
-    let userData=sessionStorage.getItem("user-data");
-    if(userData){
-        userData=JSON.parse(userData)
+    let userData = sessionStorage.getItem("user-data");
+    if (userData) {
+        userData = JSON.parse(userData)
     }
-    console.log('user-data',userData)
+
+    const fetchMatches = useCallback(async () => {
+        const query = userData?.userId
+            ? `?createdBy=${userData.userId}`
+            : "";
+
+        const res = await matchApi.get(query);
+        setMatches(res.data.result || res.data);
+    }, [userData?.userId]); // dependency
 
     useEffect(() => {
         fetchMatches();
-    }, []);
-
-    const fetchMatches = async () => {
-        const res = await matchApi.get(userData?.userId?`?createdBy=${userData.userId}`:``);
-        setMatches(res.data.result || res.data);
-    };
+    }, [fetchMatches]);
 
     return (
         <>
-        <Box
-            sx={{
-                // minHeight: "100vh",
-                p: 4,
-                background:
-                    "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)"
-            }}
-        >
-            <Typography
-                variant="h4"
-                fontWeight={700}
-                color="white"
-                mb={4}
-                textAlign="center"
+            <Box
+                sx={{
+                    // minHeight: "100vh",
+                    p: 4,
+                    background:
+                        "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)"
+                }}
             >
-                🏏 My Recent Matches
-            </Typography>
+                <Typography
+                    variant="h4"
+                    fontWeight={700}
+                    color="white"
+                    mb={4}
+                    textAlign="center"
+                >
+                    🏏 My Recent Matches
+                </Typography>
 
-            <Grid container spacing={3}>
-                {matches.map((match) => (
-                    <Grid item
-                        xs={12}
-                        sm={6}
-                        md={6}     
-                        lg={4}    
-                        key={match._id}
-                        onClick={() => navigate(`/live-score/${match._id}`)}
-                        display="flex">
-                        <MatchCard match={match} />
-                    </Grid>
-                ))}
-            </Grid>
-        </Box>
-        <section style={{fontSize:'80px',fontFamily:'monospace'}}>
-        Umpire nahi hai
-        <br></br>
-        par score toh hai...
-        </section>
+                <Grid container spacing={3}>
+                    {matches.map((match) => (
+                        <Grid item
+                            xs={12}
+                            sm={6}
+                            md={6}
+                            lg={4}
+                            key={match._id}
+                            onClick={() => navigate(`/live-score/${match._id}`)}
+                            display="flex">
+                            <MatchCard match={match} />
+                        </Grid>
+                    ))}
+                </Grid>
+            </Box>
+            <section style={{ fontSize: '80px', fontFamily: 'monospace' }}>
+                Umpire nahi hai
+                <br></br>
+                par score toh hai...
+            </section>
         </>
     );
 }
@@ -72,8 +75,8 @@ function MatchCard({ match, onOpen }) {
         <Card
             sx={{
                 width: "100%",
-                height: "100%",    
-                minWidth: 320,           
+                height: "100%",
+                minWidth: 320,
                 borderRadius: 4,
                 background: "rgba(255,255,255,0.12)",
                 backdropFilter: "blur(10px)",
@@ -125,7 +128,7 @@ function MatchCard({ match, onOpen }) {
                         active={match.battingTeam === "Team B"}
                     />
                 </Box>
-                <h3 style={{color: 'yellow'}}>{match.result}</h3>
+                <h3 style={{ color: 'yellow' }}>{match.result}</h3>
                 {/* <Button
           fullWidth
           variant="contained"

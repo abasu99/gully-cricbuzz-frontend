@@ -51,12 +51,12 @@ export default function LiveMatch() {
         setOpen(false)
     }
 
-    const isControlsDisabled = () => {
-        const battingTeam = match.battingTeam === "Team A" ? match.teamA : match.teamB
-        console.log('hoi', match.oversLimit, match.currentOver, match.wicketPerSide, battingTeam.wickets)
-        if (match.oversLimit === match.currentOver || match.wicketPerSide === battingTeam.wickets) setControlsDisable(true);
-        else setControlsDisable(false);
-    }
+    // const isControlsDisabled = () => {
+    //     const battingTeam = match.battingTeam === "Team A" ? match.teamA : match.teamB
+    //     console.log('hoi', match.oversLimit, match.currentOver, match.wicketPerSide, battingTeam.wickets)
+    //     if (match.oversLimit === match.currentOver || match.wicketPerSide === battingTeam.wickets) setControlsDisable(true);
+    //     else setControlsDisable(false);
+    // }
 
     return (
 
