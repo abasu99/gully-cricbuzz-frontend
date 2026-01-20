@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+
+}
+
+body {
+
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+  }
+  
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  
+  /* ---------- Containers ---------- */
+  .container {
+
+    max-width: 900px;
+    margin: auto;
+    padding: 24px;
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+  }
+  
+  
+  /* ---------- Scoreboard ---------- */
+  .scoreboard {
+    margin-top: 20px;
+  }
+  
+  .scoreboard h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .teams {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .team-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .team-card.active {
+    border: 2px solid #00e5ff;
+  }
+  
+  .team-name {
+    font-size: 18px;
+    opacity: 0.9;
+  }
+  
+  .team-score {
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 8px;
+    color: yellow;
+  }
+  
+  /* ---------- Match Info ---------- */
+  .match-info {
+    text-align: center;
+    margin-bottom: 20px;
+    opacity: 0.85;
+  }
+  
+  /* ---------- Controls ---------- */
+  .controls {
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px; */
+    margin-top: 20px;
+  }
+
+  .controls .numbers{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .controls button {
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 16px;
+    width: 150px;
+  }
+
+  .controls button:disabled{
+    background-color: black;
+  }
+  
+  .controls button:hover :not(:disabled){
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+  
+  .controls .wicket {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  }
+  .controls .run-out {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border-radius: 0 12px 12px 0 !important;
+  }
+  .controls .switch {
+    background: linear-gradient(135deg, #1006d2, #3a3685);
+  }
+  .controls .end {
+    background: linear-gradient(135deg, #09e94c, #54ab4c);
+  }
+  
+  .controls .undo {
+    grid-column: span 4;
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    color: #000;
+  }
+  
+  /* ---------- Responsive ---------- */
+  @media (max-width: 600px) {
+    .teams {
+      grid-template-columns: 1fr;
+    }
+  
+    .controls {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .controls .undo {
+      grid-column: span 3;
+    }
+  }
+  
+  
+  

@@ -1,0 +1,71 @@
+.score-page{
+  padding: 10px;
+}
+
+.live-score-container {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.match-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.score-board {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.team-score {
+  font-size: 22px;
+  font-weight: bold;
+  color: #222;
+}
+
+.overs-rate {
+  font-size: 14px;
+  color: #555;
+}
+
+.batsmen-section,
+.bowler-section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.batsmen-list {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.bowler-info {
+  font-size: 14px;
+  color: #333;
+}
+
+.footer-info {
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+/* ////////// */
+
+/* ---------- Global ---------- */

@@ -1,0 +1,51 @@
+/* ---------- Create Match Page ---------- */
+.create-match {
+    max-width: 420px;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background-color: burlywood !important;
+  }
+  
+  .create-match h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .create-match label {
+    font-size: 13px;
+    opacity: 0.85;
+  }
+  
+  .create-match input {
+    width: 100%;
+  }
+  
+  .team-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .create-match button {
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    font-size: 16px;
+  }
+  
+  .create-match button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 114, 255, 0.4);
+  }
+  
+  /* ---------- Mobile ---------- */
+  @media (max-width: 480px) {
+    .team-inputs {
+      grid-template-columns: 1fr;
+    }
+  }
+  
