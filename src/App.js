@@ -1,18 +1,13 @@
 import './App.css';
 import * as React from 'react';
-import io from 'socket.io-client';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import LiveScore from './components/live-score';
 import ManageScore from './components/manage-score';
-import CreateMatch from './components/create-match';
 import LiveMatch from './components/LiveMatch';
 import AuthPage from './components/AuthPage';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Header';
-
-const socket = io('http://localhost:3001');
 
 function App() {
   //   const [socketData, setSocketData] = React.useState(null);

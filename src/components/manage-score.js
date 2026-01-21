@@ -1,23 +1,22 @@
-import { TextField, Button, MenuItem, Select, Checkbox, ListItemText, OutlinedInput } from '@mui/material';
+import { TextField, Button, MenuItem, Select } from '@mui/material';
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
 import { matchApi } from "../services/api";
-import socket from "../services/socket";
 
 import "../styles/createMatchPage.css"
-// const socket = io('http://localhost:3001');
 
-const names = ['0', '1', '2', '3', '4', '6', 'W', 'wd', 'NB',];
+// const names = ['0', '1', '2', '3', '4', '6', 'W', 'wd', 'NB',];
 const decisions = ['Team A', 'Team B'];
 
 function ManageScore() {
     const navigate = useNavigate();
     // const { matchId } = useParams();
     const [matchId, setMatchId] = React.useState('');
-    const [ballUpdate, setBallUpdate] = React.useState([]);
-    const [striker, setStriker] = React.useState('');
-    const [nonStriker, setNonStriker] = React.useState('');
-    const [bowler, setBowler] = React.useState('');
+    console.log('matchId',matchId)
+    // const [ballUpdate, setBallUpdate] = React.useState([]);
+    // const [striker, setStriker] = React.useState('');
+    // const [nonStriker, setNonStriker] = React.useState('');
+    // const [bowler, setBowler] = React.useState('');
     // const [tossWinner, setTossWinner] = React.useState('');
     // const [decision, setDecision] = React.useState('');
     const [matchName, setMatchName] = React.useState('');
@@ -28,7 +27,7 @@ function ManageScore() {
     const [overs, setOvers] = React.useState(5);
     const [isStarted, setIsStarted] = React.useState(false);
 
-    const [scoreCard, setScoreCard] = React.useState(null);
+    // const [scoreCard, setScoreCard] = React.useState(null);
 
     // React.useEffect(() => {
     //     socket.on('live-score', (msg) => {
@@ -52,12 +51,12 @@ function ManageScore() {
     // }, []);
 
 
-    const handleChange = (event) => {
-        const { target: { value }, } = event;
-        setBallUpdate(
-            typeof value === 'string' ? value.split(',') : value,
-        );
-    };
+    // const handleChange = (event) => {
+    //     const { target: { value }, } = event;
+    //     setBallUpdate(
+    //         typeof value === 'string' ? value.split(',') : value,
+    //     );
+    // };
 
     const startMatch = async () => {
         setIsStarted(true);
@@ -80,23 +79,23 @@ function ManageScore() {
         }, 2000);
         // updateScore();
     }
-    const updateScore = () => {
-        const payload = { striker, nonStriker, bowler, ballUpdate, battingTeam, matchId };
-        // const payload = { striker, nonStriker, bowler, ballUpdate, battingTeam, bowlingTeam, tossWinner, decision, matchId };
-        socket.emit('update-score', JSON.stringify(payload));
-        if ((ballUpdate.includes('1') || ballUpdate.includes('3')) || (scoreCard && scoreCard.balls % 6 === 0)) {
-            swapBatsmen();
-        } else if (ballUpdate.includes('W')) {
-            setStriker('');
-        }
-        setBallUpdate([])
-    }
+    // const updateScore = () => {
+    //     const payload = { striker, nonStriker, bowler, ballUpdate, battingTeam, matchId };
+    //     // const payload = { striker, nonStriker, bowler, ballUpdate, battingTeam, bowlingTeam, tossWinner, decision, matchId };
+    //     socket.emit('update-score', JSON.stringify(payload));
+    //     if ((ballUpdate.includes('1') || ballUpdate.includes('3')) || (scoreCard && scoreCard.balls % 6 === 0)) {
+    //         swapBatsmen();
+    //     } else if (ballUpdate.includes('W')) {
+    //         setStriker('');
+    //     }
+    //     setBallUpdate([])
+    // }
 
-    const swapBatsmen = () => {
-        const tempStriker = striker;
-        setStriker(nonStriker);
-        setNonStriker(tempStriker);
-    }
+    // const swapBatsmen = () => {
+    //     const tempStriker = striker;
+    //     setStriker(nonStriker);
+    //     setNonStriker(tempStriker);
+    // }
 
     return (
         <>
