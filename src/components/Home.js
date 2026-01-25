@@ -22,7 +22,7 @@ export default function Home() {
 
         const res = await matchApi.get(query);
         setMatches(res.data.result || res.data);
-    }, [sharedData,userData.userId]); // dependency
+    }, [sharedData,userData?.userId]); // dependency
 
     useEffect(() => {
         fetchMatches();
