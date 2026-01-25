@@ -1,16 +1,16 @@
 import axios from "axios";
 
-const vercelBaseURL = 'https://gully-cricbuzz-backend.vercel.app/';
-// const localBaseURL = 'http://localhost:3001/';
+const baseURL = 'https://gully-cricbuzz-backend.vercel.app/';
+// const baseURL = 'http://localhost:3001/';
 
 const matchApi = axios.create({
-  baseURL: `${vercelBaseURL}api/v1/match`,
+  baseURL: `${baseURL}api/v1/match`,
   headers: {
     'Authorization': `Bearer ${sessionStorage.getItem('token')}`
   }
 });
 const authApi = axios.create({
-  baseURL: `${vercelBaseURL}api/v1/auth`
+  baseURL: `${baseURL}api/v1/auth`
 });
 
 export {matchApi,authApi};
