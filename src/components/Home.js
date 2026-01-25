@@ -1,24 +1,28 @@
 import { useEffect, useState, useCallback } from "react";
-import { Box, Card, CardContent, Typography, Chip, Grid } from "@mui/material";
+import { Box, Card, CardContent, Typography, Chip, Grid, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { matchApi } from "../services/api";
+import { useAppContext } from "../context/AppContext";
 
 export default function Home() {
-    const [matches, setMatches] = useState([]);
+
     const navigate = useNavigate();
+    const { sharedData } = useAppContext();
+    const [matches, setMatches] = useState([]);
     let userData = sessionStorage.getItem("user-data");
     if (userData) {
         userData = JSON.parse(userData)
     }
-
+    console.log('sharedData', sharedData)
     const fetchMatches = useCallback(async () => {
-        const query = userData?.userId
+        setMatches([])
+        const query = userData?.userId && sharedData === 'My'
             ? `?createdBy=${userData.userId}`
             : "";
 
         const res = await matchApi.get(query);
         setMatches(res.data.result || res.data);
-    }, [userData?.userId]); // dependency
+    }, [sharedData,userData.userId]); // dependency
 
     useEffect(() => {
         fetchMatches();
@@ -34,30 +38,39 @@ export default function Home() {
                         "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)"
                 }}
             >
-                <Typography
-                    variant="h4"
-                    fontWeight={700}
-                    color="white"
-                    mb={4}
-                    textAlign="center"
-                >
-                    🏏 My Recent Matches
-                </Typography>
+                {matches.length ?
+                    <>
+                        <Typography
+                            variant="h4"
+                            fontWeight={700}
+                            color="white"
+                            mb={4}
+                            textAlign="center"
+                        >
+                            🏏 {sharedData} Recent Matches
+                        </Typography>
 
-                <Grid container spacing={3}>
-                    {matches.map((match) => (
-                        <Grid item
-                            xs={12}
-                            sm={6}
-                            md={6}
-                            lg={4}
-                            key={match._id}
-                            onClick={() => navigate(`/live-score/${match._id}`)}
-                            display="flex">
-                            <MatchCard match={match} />
+                        <Grid container spacing={3}>
+                            {matches.map((match) => (
+                                <Grid item
+                                    xs={12}
+                                    sm={6}
+                                    md={6}
+                                    lg={4}
+                                    key={match._id}
+                                    onClick={() => navigate(`/live-score/${match._id}`)}
+                                    display="flex">
+                                    <MatchCard match={match} />
+                                </Grid>
+                            ))}
                         </Grid>
-                    ))}
-                </Grid>
+                    </>
+                    : <>
+                        <CircularProgress size={200} sx={{
+                            display: 'flex',
+                            margin: '0 auto'
+                        }} />
+                    </>}
             </Box>
             <section style={{ fontSize: '80px', fontFamily: 'monospace' }}>
                 Umpire nahi hai
@@ -107,7 +120,8 @@ function MatchCard({ match, onOpen }) {
                         label={match.status}
                         size="small"
                         sx={{
-                            backgroundColor: match.status === 'LIVE' ? "#ff4d4f" : match.status === 'UPCOMING' ? "purple" : "#4caf50",
+                            backgroundColor: match.status === 'LIVE' ? "#ff4d4f" : match.status === 'UPCOMING' ? "purple" :
+                                match.status === 'ABANDONED' ? "grey" : "#4caf50",
                             color: "white",
                             fontWeight: 600
                         }}

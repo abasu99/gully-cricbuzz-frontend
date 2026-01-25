@@ -1,10 +1,10 @@
 // import { render,screen,waitFor,vi } from '@testing-library/react';
-// import CreateMatch from './create-match';
+// import ManageScore from './manage-score';
 // import "@testing-library/jest-dom/vitest";
 
-// describe(CreateMatch,()=>{
+// describe(ManageScore,()=>{
 //     it('should display header text',()=>{
-//       render(<CreateMatch/>);
+//       render(<ManageScore/>);
 //         const headerText = screen.getByTestId("header").textContent;
 //         expect(headerText).toEqual("Create Match");
 //     })

@@ -1,7 +1,7 @@
 import './App.css';
 import * as React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import ManageScore from './components/manage-score';
+import CreateMatch from './components/create-match';
 import LiveMatch from './components/LiveMatch';
 import AuthPage from './components/AuthPage';
 import Home from './components/Home';
@@ -44,14 +44,14 @@ function App() {
 
           <Header />
           <Routes>
-            {/* <Route path="/" element={<CreateMatch />} /> */}
+            {/* <Route path="/" element={<ManageScore />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<AuthPage />} />
             {/* <Route path="/live-score/:matchId" element={<LiveScore />} /> */}
             <Route path="/live-score/:id" element={<LiveMatch />} />
-            <Route path="/manage-score" element={
+            <Route path="/create-match" element={
               <ProtectedRoute>
-                <ManageScore />
+                <CreateMatch />
               </ProtectedRoute>
             } />
           </Routes>
