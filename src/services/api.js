@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const baseURL = 'https://gully-cricbuzz-backend.vercel.app/';
+// const baseURL = 'https://gully-cricbuzz-backend.vercel.app/';
 // const baseURL = 'http://localhost:3001/';
+const baseURL = "http://43.204.219.73:3001/";
 
 const matchApi = axios.create({
   baseURL: `${baseURL}api/v1/match`,
